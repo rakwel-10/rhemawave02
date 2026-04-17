@@ -113,8 +113,14 @@
           a profound, whole-body experience &mdash; the <em>Euphoric Feeling</em>.
         </p>
       </div>
-      <div class="welcome__media glass reveal" aria-hidden="true">
-        <div class="welcome__orb"></div>
+      <div class="welcome__media glass reveal">
+        <img src="assets/cells.jpg" alt="Scalar wave cellular vitality" class="welcome__thumb" />
+        <button class="welcome__play" aria-label="Play video" data-video="https://www.youtube.com/embed/Uq1KmCAEemA?autoplay=1&rel=0">
+          <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="34" cy="34" r="33" stroke="#fff" stroke-width="2" opacity="0.9"/>
+            <polygon points="27,20 27,48 50,34" fill="#fff"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
@@ -387,6 +393,17 @@
       </p>
     </div>
   </footer>
+
+  <!-- Video modal -->
+  <div id="video-modal" class="video-modal" aria-hidden="true">
+    <div class="video-modal__backdrop"></div>
+    <div class="video-modal__content">
+      <button class="video-modal__close" aria-label="Close video">&times;</button>
+      <div class="video-modal__frame">
+        <iframe id="video-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

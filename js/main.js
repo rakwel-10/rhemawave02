@@ -48,6 +48,31 @@
     checkSticky();
   }
 
+  // -------- video modal -----------------------------------------------
+  const modal   = document.getElementById('video-modal');
+  const iframe  = document.getElementById('video-iframe');
+  const playBtn = document.querySelector('.welcome__play');
+
+  function openVideo() {
+    if (!modal || !iframe || !playBtn) return;
+    iframe.src = playBtn.dataset.video;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+  function closeVideo() {
+    if (!modal || !iframe) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+  }
+
+  if (playBtn) playBtn.addEventListener('click', openVideo);
+  if (modal) {
+    modal.querySelector('.video-modal__backdrop').addEventListener('click', closeVideo);
+    modal.querySelector('.video-modal__close').addEventListener('click', closeVideo);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
+  }
+
   // -------- reveal on scroll -----------------------------------------
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const targets = document.querySelectorAll('.reveal');

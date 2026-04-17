@@ -429,7 +429,7 @@ h1 em, h2 em, h3 em {
 .welcome__copy .section__title { margin-bottom: 2rem; }
 .welcome__copy .section__lede:not(:last-child) { margin-bottom: 1.25rem; }
 .welcome__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   padding: 0;
   display: flex;
   align-items: center;
@@ -437,22 +437,76 @@ h1 em, h2 em, h3 em {
   overflow: hidden;
   position: relative;
 }
-.welcome__orb {
-  width: 70%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent 55%),
-    var(--lumina);
-  filter: blur(0.5px);
-  box-shadow:
-    0 30px 80px -20px rgba(224,92,146,0.3),
-    inset -20px -30px 60px rgba(30,30,44,0.2);
-  animation: orb-float 8s ease-in-out infinite;
+.welcome__thumb {
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
-@keyframes orb-float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50%      { transform: translateY(-12px) scale(1.02); }
+.welcome__play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px; height: 68px;
+  padding: 0; border: 0; background: none;
+  cursor: pointer;
+  transition: transform .3s var(--ease-out), opacity .3s;
+  opacity: 0.85;
+  z-index: 2;
+}
+.welcome__play:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  opacity: 1;
+}
+.welcome__play svg { width: 100%; height: 100%; }
+.welcome__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.15);
+  pointer-events: none;
+  transition: background .3s;
+}
+.welcome__media:hover::after { background: rgba(0,0,0,0.25); }
+
+/* ----- video modal ----- */
+.video-modal {
+  position: fixed; inset: 0;
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s var(--ease-out);
+}
+.video-modal.is-open {
+  opacity: 1; pointer-events: auto;
+}
+.video-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.8);
+}
+.video-modal__content {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+}
+.video-modal__close {
+  position: absolute;
+  top: -40px; right: 0;
+  font-size: 2rem;
+  color: #fff;
+  background: none; border: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+.video-modal__close:hover { opacity: 1; }
+.video-modal__frame {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+}
+.video-modal__frame iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
 }
 
 /* ==========================================================================
