@@ -70,6 +70,32 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
 ol, ul { list-style: none; padding: 0; margin: 0; }
 
+/* ----- loader ----- */
+.loader {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  background: var(--bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .5s var(--ease-out);
+}
+.loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader__pulse {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--lumina);
+  animation: loader-pulse 1.2s ease-in-out infinite;
+}
+@keyframes loader-pulse {
+  0%, 100% { transform: scale(0.6); opacity: 0.4; }
+  50%      { transform: scale(1);   opacity: 1; }
+}
+
 /* ----- background aurora (hidden in light theme) ----- */
 .aurora { display: none; }
 
